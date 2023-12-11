@@ -13,7 +13,7 @@ public class CSVWriterTest {
     @Test
     public void testWriteWithValidData() throws IOException {
         List<CreditCardData> data = Arrays.asList(
-            new CreditCardData("1234567890123456", "MasterCard"),
+            new CreditCardData("5567894523129089", "MasterCard"),
             new CreditCardData("4123456789012", "Visa")
         );
 
@@ -22,7 +22,7 @@ public class CSVWriterTest {
         writer.write(data, outputStream);
 
         String output = outputStream.toString();
-        assertTrue(output.contains("1234567890123456,MasterCard"));
+        assertTrue(output.contains("5567894523129089,MasterCard"));
         assertTrue(output.contains("4123456789012,Visa"));
     }
 }
