@@ -1,4 +1,5 @@
 cardNumber,cardType
+cardNumber,Invalid: non numeric characters
 5567894523129089,MasterCard
 59012345678901234567890,Invalid: more than 19 digits
 4123456789123,Visa
@@ -10,4 +11,9 @@ cardNumber,cardType
 377856341908126,AmericanExpress
 5367894523129089,MasterCard
 6011*890HJrt6789,Invalid: non numeric characters
-,Invalid: empty/null card number
+5367894523129089,MasterCard
+5367894523129089,MasterCard
+5367894523129089,MasterCard
+5367894523129089,MasterCard
+5367894523129089,MasterCard
+5367894523129089,MasterCard
