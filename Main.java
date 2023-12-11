@@ -6,5 +6,10 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            processor.processFile("input_file.xml", "output_file.xml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
