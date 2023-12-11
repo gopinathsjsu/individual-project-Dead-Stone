@@ -14,8 +14,5 @@ public class JSONParser implements FileFormatParser {
              dataList.add(new CreditCardData(cardNumber, cardType));
          }
          return dataList;
-//        List<CreditCardData> dataList = new ArrayList<>();
-//
-//return dataList;
     }
 }
