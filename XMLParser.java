@@ -15,16 +15,21 @@ public class XMLParser implements FileFormatParser {
         NodeList nodeList = doc.getDocumentElement().getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
-            if (node instanceof Element) {
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element cardElement = (Element) node;
-                NodeList cardNumberNode = cardElement.getElementsByTagName("cardNumber");
-                if (cardNumberNode.getLength() > 0) {
-                    String cardNumber = cardNumberNode.item(0).getTextContent();
-                    String cardType = CreditCardFactory.getCreditCardType(cardNumber);
-                    dataList.add(new CreditCardData(cardNumber, cardType));
-                }
+                String cardNumber = getElementTextContent(cardElement, "CARD_NUMBER");
+                String cardType = CreditCardFactory.getCreditCardType(cardNumber);
+                dataList.add(new CreditCardData(cardNumber, cardType));
             }
         }
         return dataList;
+    }
+
+    private String getElementTextContent(Element parent, String tagName) {
+        NodeList nodeList = parent.getElementsByTagName(tagName);
+        if (nodeList != null && nodeList.getLength() > 0 && nodeList.item(0) != null) {
+            return nodeList.item(0).getTextContent();
+        }
+        return null;
     }
 }

@@ -19,19 +19,25 @@ public class XMLWriter implements FileFormatWriter {
             Element cardElement = doc.createElement("Card");
             root.appendChild(cardElement);
 
-            Element numberElement = doc.createElement("cardNumber");
-            numberElement.appendChild(doc.createTextNode(data.getCardNumber()));
-            cardElement.appendChild(numberElement);
-
-            Element typeElement = doc.createElement("cardType");
-            typeElement.appendChild(doc.createTextNode(data.getCardType()));
-            cardElement.appendChild(typeElement);
+            addElementWithText(doc, cardElement, "cardNumber", data.getCardNumber());
+            addElementWithText(doc, cardElement, "cardType", data.getCardType());
         }
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         DOMSource domSource = new DOMSource(doc);
         StreamResult streamResult = new StreamResult(outputStream);
         transformer.transform(domSource, streamResult);
+    }
+
+    private void addElementWithText(Document doc, Element parent, String tagName, String textContent) {
+        Element elem = doc.createElement(tagName);
+        if (textContent != null) {
+            elem.appendChild(doc.createTextNode(textContent));
+        } else {
+            elem.appendChild(doc.createTextNode(""));
+        }
+        parent.appendChild(elem);
     }
 }
