@@ -11,11 +11,11 @@ public class CSVParser implements FileFormatParser {
             String line;
             int c=0;
             while ((line = reader.readLine()) != null) {
-                if(c==0){
+                String[] parts = line.split(",");
+                if(c==0 && parts[0].equals("cardNumber")){
                     c+=1;
                     continue;
                 }
-                String[] parts = line.split(",");
                 if (parts.length > 0 && !parts[0].isEmpty()) {
                     String cardNumber = parts[0].trim();
                     String cardType = CreditCardFactory.getCreditCardType(cardNumber);
